@@ -1,0 +1,63 @@
+{% extends "homepage/index.html" %} 
+{% block title%}
+Register
+{% endblock %}
+{% block cssjs%}
+{% load staticfiles %}
+<link href="{% static 'homepage/mycss.css' %}" rel="stylesheet">
+<script type="text/javascript">
+function checkpwd()
+{
+	var pwd = document.getElementById("pwd");
+	var pwd_cmf = document.getElementById("pwd_cmf");
+	var pwdnotice = document.getElementById("pwdnotice");
+	if( pwd.value != pwd_cmf.value)
+	{
+		pwdnotice.innerHTML="Passwords don't match";
+	}
+	else
+	{
+		pwdnotice.innerHTML="";
+	}
+}
+function submit1()
+{
+	var pwd = document.getElementById("pwd");
+	var pwd_cmf = document.getElementById("pwd_cmf");
+	if( pwd.value == pwd_cmf.value)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<form action="{% url 'register:done' %}" method="post" onsubmit="return submit1()">
+{% csrf_token %}
+<div class="container">
+<div class="col-sm-5"><div class="textname">username:</div></div>
+<div class="col-md-7"><input name="username" type="text" /></div>
+</div>
+<div class="container">
+<div class="col-sm-5"><div class="textname">nickname:</div></div>
+<div class="col-md-7"><input name="nickname" type="text"/></div>
+</div>
+<div class="container">
+<div class="col-sm-5"><div class="textname">password:</div></div>
+<div class="col-md-7"><input name="password" type="password"  id="pwd"/></div>
+</div>
+<div class="container">
+<div class="col-sm-5"><div class="textname">comfirm your password: </div></div>
+<div class="col-md-2"><input name="pwd_comfirmd" type="password" id="pwd_cmf" onkeyup="checkpwd()" /></div>
+<div class="col-md-5" id="pwdnotice"></div>
+</div>
+<div class="container">
+<div class="col-md-7"><input style="float:right;" type="submit" value="submit" name="submit"></div>
+</div>
+</form>
+{% endblock %}

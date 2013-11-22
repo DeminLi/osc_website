@@ -1,0 +1,18 @@
+{% extends "cookbooks/cookbook.html" %}
+{% load staticfiles %}
+{% block cssjs %}
+   <script type="text/javascript" src="{% static 'cookbooks/ckeditor/ckeditor.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<form action="{% url 'cookbooks:submitncb' %}" method="post">
+{% csrf_token %}
+<p>
+title:</br>
+<input name="title" type="text" value=""/></br>
+<textarea name="content"cols="80" rows="5"></textarea></br>
+<script type="text/javascript">CKEDITOR.replace('content');</script>
+<input name="submit" type="submit" value="submit" /><br>
+</p>
+</form>
+{% endblock %}

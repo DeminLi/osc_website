@@ -1,0 +1,19 @@
+{% extends "homepage/index.html" %} 
+{% load staticfiles %}
+{% block title %}
+Cook Books
+{% endblock %}
+{% block cssjs %}
+    <link href="{% static 'cookbooks/mycss.css'%}" rel="stylesheet" />
+{% endblock %}
+
+{% block activec%}
+ class="active"
+{% endblock %}
+{% block content %}
+      <a class="btn btn-lg btn-primary" href="{% url 'cookbooks:newcb' %}" role="button">New Cookbook</a>
+      {% for b in l.all %}
+    	<p><a href="{% url 'cookbooks:blogarticle' b.id %}">{{b.title}}</a></p>
+	  {% endfor %}
+    </div>
+{% endblock %}

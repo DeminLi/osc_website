@@ -1,0 +1,12 @@
+{% extends "cookbooks/cookbook.html" %}
+{% load staticfiles %}
+{% block cssjs %}
+   <script type="text/javascript" src="{% static 'cookbooks/ckeditor/ckeditor.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<p>{{b.title}}</p>
+{% autoescape off %}
+ <p>{{b.content}}</p>
+{% endautoescape %}
+{% endblock %}
